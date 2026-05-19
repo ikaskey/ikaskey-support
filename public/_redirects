@@ -1,0 +1,61 @@
+# Cloudflare Pages / Workers _redirects
+#
+# 旧 VuePress (`/foo.html`, `/posts/news/...html`, `/category/おしらせ/...`)
+# → 新 Astro Starlight (`/foo/`, `/news/.../`, `/news/`) へ恒久リダイレクト。
+
+# ─────────────────────────────────────────────
+# トップレベル ページ
+# ─────────────────────────────────────────────
+/about.html         /about/         301
+/customize.html     /customize/     301
+/FAQ.html           /faq/           301
+/faq.html           /faq/           301
+/guideline.html     /guideline/     301
+/supporter.html     /supporter/     301
+/server-block.html  /server-block/  301
+
+# Terms (旧では index.html、サブページは .html)
+/terms.html                 /terms/                 301
+/terms/changelog.html       /terms/changelog/       301
+/terms/other-terms.html     /terms/other-terms/     301
+/terms/terms_v1.html        /terms/terms_v1/        301
+
+# Privacy Policy
+/privacy-policy.html               /privacy-policy/             301
+/privacy-policy/changelog.html     /privacy-policy/changelog/   301
+
+# ─────────────────────────────────────────────
+# Posts (VuePress では /posts/news/<slug>.html、blog2 でカテゴリ index も生成)
+# ─────────────────────────────────────────────
+/posts/news/20230413-protect_server.html            /news/20230413-protect_server/            301
+/posts/news/20230501-change_terms.html              /news/20230501-change_terms/              301
+/posts/news/20230503-server_down.html               /news/20230503-server_down/               301
+/posts/news/20230615-add-server-block.html          /news/20230615-add-server-block/          301
+/posts/news/20230628-finance.html                   /news/20230628-finance/                   301
+/posts/news/20230629-new-supporter-plan.html        /news/20230629-new-supporter-plan/        301
+/posts/news/20230703-change_terms.html              /news/20230703-change_terms/              301
+/posts/news/20230703-guide-for-newbies.html         /news/20230703-guide-for-newbies/         301
+/posts/news/20230706-change_terms.html              /news/20230706-change_terms/              301
+/posts/news/20230710-change_terms.html              /news/20230710-change_terms/              301
+/posts/news/20230714-add_guideline_for_nsfw.html    /news/20230714-add_guideline_for_nsfw/    301
+/posts/news/20230803-finance.html                   /news/20230803-finance/                   301
+
+/posts/maintenance/20230509-update_maintenance.html     /maintenance/20230509-update_maintenance/     301
+/posts/maintenance/20230615-database_maintenance.html   /maintenance/20230615-database_maintenance/   301
+/posts/maintenance/20230629-server_maintenance.html     /maintenance/20230629-server_maintenance/     301
+
+# ─────────────────────────────────────────────
+# blog2 が生成していた集約ページ
+# ─────────────────────────────────────────────
+# カテゴリ集約 (おしらせ / メンテナンス) → それぞれの専用ページへ
+/category/おしらせ/*       /news/         301
+/category/メンテナンス/*   /maintenance/  301
+/category/*                /              301
+
+# タグ集約 → トップへ集約 (個別タグページは無し)
+/tag/*    /    301
+
+# 記事一覧 (旧: /posts/, /article/) → タイムラインへ
+/posts/      /timeline/    301
+/article/    /timeline/    301
+/article/*   /timeline/    301
