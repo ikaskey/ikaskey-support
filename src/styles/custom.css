@@ -165,17 +165,25 @@ header.header {
   padding-block: 1rem 2rem;
 }
 
-/* 巨大タイトル + インクグラデ */
+/* 大胆タイトル + インクグラデ (1 行に収める) */
 .hero h1 {
   font-family: var(--iks-font-display);
   font-weight: 900;
-  font-size: clamp(2.6rem, 7vw, 5rem);
-  line-height: 1.05;
+  font-size: clamp(2rem, 4vw, 3.2rem);
+  line-height: 1.1;
+  text-wrap: nowrap;
   background: linear-gradient(115deg, var(--iks-violet-bright), var(--iks-pink) 60%, var(--iks-orange));
   -webkit-background-clip: text;
   background-clip: text;
   -webkit-text-fill-color: transparent;
   filter: drop-shadow(0 3px 0 rgba(0, 0, 0, 0.08));
+}
+/* 狭い画面では nowrap を解除して溢れを防ぐ */
+@media (max-width: 30rem) {
+  .hero h1 {
+    text-wrap: balance;
+    font-size: 1.9rem;
+  }
 }
 .hero .tagline {
   font-family: var(--iks-font-display);
