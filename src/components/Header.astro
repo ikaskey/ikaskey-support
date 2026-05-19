@@ -1,0 +1,104 @@
+---
+import config from 'virtual:starlight/user-config';
+
+import LanguageSelect from 'virtual:starlight/components/LanguageSelect';
+import Search from 'virtual:starlight/components/Search';
+import SiteTitle from 'virtual:starlight/components/SiteTitle';
+import SocialIcons from 'virtual:starlight/components/SocialIcons';
+import ThemeSelect from 'virtual:starlight/components/ThemeSelect';
+
+const shouldRenderSearch =
+  config.pagefind ||
+  config.components.Search !== '@astrojs/starlight/components/Search.astro';
+
+// 上部ヘッダーに出すメインナビ (splash でも sidebar が隠れず辿れるように)
+const navLinks = [
+  { label: 'について', href: '/about/' },
+  { label: 'FAQ', href: '/faq/' },
+  { label: 'ガイドライン', href: '/guideline/' },
+  { label: 'カスタマイズ', href: '/customize/' },
+  { label: 'おしらせ', href: '/news/' },
+];
+
+const current = Astro.url.pathname;
+const isActive = (href: string) => current === href || current.startsWith(href);
+---
+
+<div class="header sl-flex">
+  <div class="title-wrapper sl-flex">
+    <SiteTitle />
+  </div>
+
+  <nav class="iks-nav sl-hidden lg:sl-flex" aria-label="メインメニュー">
+    {navLinks.map((l) => (
+      <a href={l.href} class="iks-nav-link" aria-current={isActive(l.href) ? 'page' : undefined}>
+        {l.label}
+      </a>
+    ))}
+  </nav>
+
+  <div class="sl-flex print:hidden">
+    {shouldRenderSearch && <Search />}
+  </div>
+
+  <div class="sl-hidden md:sl-flex print:hidden right-group">
+    <div class="sl-flex social-icons">
+      <SocialIcons />
+    </div>
+    <ThemeSelect />
+    <LanguageSelect />
+  </div>
+</div>
+
+<style>
+  .header {
+    gap: var(--sl-nav-gap);
+    justify-content: space-between;
+    align-items: center;
+    height: 100%;
+  }
+
+  .title-wrapper {
+    overflow: clip;
+    padding: 0.25rem;
+    margin: -0.25rem;
+    min-width: 0;
+  }
+
+  .iks-nav {
+    gap: 0.25rem;
+    align-items: center;
+    flex: 1;
+    justify-content: center;
+  }
+  .iks-nav-link {
+    font-family: 'Zen Maru Gothic', var(--sl-font);
+    font-weight: 700;
+    font-size: var(--sl-text-sm);
+    color: var(--sl-color-gray-1);
+    text-decoration: none;
+    padding: 0.35rem 0.75rem;
+    border-radius: 999px;
+    white-space: nowrap;
+    transition: background 0.15s ease, color 0.15s ease;
+  }
+  .iks-nav-link:hover {
+    background: var(--sl-color-accent-low);
+    color: var(--sl-color-accent-high);
+  }
+  .iks-nav-link[aria-current='page'] {
+    background: var(--sl-color-accent-low);
+    color: var(--sl-color-accent-high);
+  }
+
+  .right-group,
+  .social-icons {
+    gap: 1rem;
+    align-items: center;
+  }
+  .social-icons::after {
+    content: '';
+    height: 2rem;
+    border-inline-end: 1px solid var(--sl-color-gray-5);
+  }
+</style>

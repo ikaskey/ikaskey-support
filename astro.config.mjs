@@ -9,10 +9,33 @@ export default defineConfig({
     starlight({
       title: 'いかすきーサポート',
       description: 'Misskey サーバー「いかすきー」のサポートサイトです',
-      defaultLocale: 'ja',
+      // 単一言語 (日本語) をルート配信。`root` キーを使わないと /ja/ 接頭辞が付き、
+      // 内部リンクが /ja/... を指して 404 になる。
       locales: {
-        ja: { label: '日本語', lang: 'ja' },
+        root: { label: '日本語', lang: 'ja' },
       },
+      // 日本語に強い特徴的フォント (見出し=丸ゴシック / 本文=角ゴシック)
+      head: [
+        {
+          tag: 'link',
+          attrs: { rel: 'preconnect', href: 'https://fonts.googleapis.com' },
+        },
+        {
+          tag: 'link',
+          attrs: { rel: 'preconnect', href: 'https://fonts.gstatic.com', crossorigin: true },
+        },
+        {
+          tag: 'link',
+          attrs: {
+            rel: 'stylesheet',
+            href: 'https://fonts.googleapis.com/css2?family=Zen+Maru+Gothic:wght@500;700;900&family=Zen+Kaku+Gothic+New:wght@400;500;700&display=swap',
+          },
+        },
+        {
+          tag: 'meta',
+          attrs: { name: 'theme-color', content: '#603be2' },
+        },
+      ],
       logo: {
         src: './src/assets/ikaskey-icon.png',
         alt: 'いかすきー',
@@ -61,6 +84,10 @@ export default defineConfig({
       ],
       lastUpdated: true,
       customCss: ['./src/styles/custom.css'],
+      components: {
+        // 上部ヘッダーにメインナビを追加 (splash でも辿れるように)
+        Header: './src/components/Header.astro',
+      },
     }),
     sitemap(),
   ],
