@@ -1,0 +1,38 @@
+---
+import { getCollection } from 'astro:content';
+import StarlightPage from '@astrojs/starlight/components/StarlightPage.astro';
+
+const all = await getCollection('posts');
+const items = all.sort((a, b) => b.data.date.getTime() - a.data.date.getTime());
+
+const fmt = new Intl.DateTimeFormat('ja-JP', {
+  year: 'numeric',
+  month: '2-digit',
+  day: '2-digit',
+});
+
+function pathFor(post: typeof items[number]) {
+  const slug = post.id.replace(/\.md$/, '');
+  const isMaintenance = post.data.category.includes('メンテナンス');
+  // posts/ collection は news/ または maintenance/ で path 切り分け
+  if (slug.startsWith('news/')) return `/news/${slug.slice('news/'.length)}/`;
+  if (slug.startsWith('maintenance/')) return `/maintenance/${slug.slice('maintenance/'.length)}/`;
+  return isMaintenance ? `/maintenance/${slug}/` : `/news/${slug}/`;
+}
+---
+
+<StarlightPage frontmatter={{ title: 'タイムライン', description: 'いかすきーのおしらせ・メンテナンスをまとめて時系列で表示します。' }}>
+  <ul class="post-list">
+    {items.map((post) => (
+      <li>
+        <a href={pathFor(post)}>
+          <span class="post-date">{fmt.format(post.data.date)}</span>
+          <span class={`post-status ${post.data.category.includes('メンテナンス') ? 'caution' : 'tip'}`}>
+            {post.data.category[0] ?? '記事'}
+          </span>
+          <span class="post-title">{post.data.title}</span>
+        </a>
+      </li>
+    ))}
+  </ul>
+</StarlightPage>

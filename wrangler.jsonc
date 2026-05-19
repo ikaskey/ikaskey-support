@@ -2,9 +2,9 @@
   "$schema": "https://unpkg.com/wrangler/config-schema.json",
   "name": "ikaskey-support",
   "compatibility_date": "2026-05-19",
-  // VuePress build output を Cloudflare 側に static assets として upload する。
+  // Astro build output を Cloudflare 側に static assets として upload する。
   "assets": {
-    "directory": "./docs/.vuepress/dist",
+    "directory": "./dist",
     "html_handling": "auto-trailing-slash",
     "not_found_handling": "404-page"
   }
