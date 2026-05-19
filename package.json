@@ -1,18 +1,17 @@
 {
   "name": "ikaskey-support",
-  "version": "1.1.1",
-  "description": "いかすきーサポート用のVuePressです。",
-  "main": "index.js",
+  "version": "2.0.0",
+  "description": "いかすきーサポート用 (Astro Starlight)",
+  "type": "module",
   "scripts": {
-    "docs:dev": "vuepress dev docs",
-    "docs:build": "vuepress build docs",
-    "docs:serve": "http-server -a localhost docs/.vuepress/dist -o",
-    "docs:vite-build": "vuepress-vite build docs",
-    "docs:vite-clean-dev": "vuepress-vite dev docs --clean-cache",
-    "docs:vite-dev": "vuepress-vite dev docs",
-    "docs:webpack-build": "vuepress-webpack build docs",
-    "docs:webpack-clean-dev": "vuepress-webpack dev docs --clean-cache",
-    "docs:webpack-dev": "vuepress-webpack dev docs"
+    "dev": "astro dev",
+    "start": "astro dev",
+    "build": "astro build",
+    "preview": "astro preview",
+    "astro": "astro",
+    "lint": "oxlint",
+    "fmt": "oxfmt",
+    "fmt:check": "oxfmt --check"
   },
   "repository": {
     "type": "git",
@@ -24,19 +23,15 @@
     "url": "https://github.com/ikaskey/ikaskey-support/issues"
   },
   "homepage": "https://github.com/ikaskey/ikaskey-support#readme",
+  "dependencies": {
+    "@astrojs/mdx": "^5.0.6",
+    "@astrojs/sitemap": "^3.7.2",
+    "@astrojs/starlight": "^0.39.2",
+    "astro": "^6.3.5",
+    "sharp": "^0.34.2"
+  },
   "devDependencies": {
-    "@vuepress/bundler-vite": "2.0.0-beta.64",
-    "@vuepress/cli": "2.0.0-beta.64",
-    "@vuepress/client": "2.0.0-beta.64",
-    "@vuepress/core": "2.0.0-beta.64",
-    "@vuepress/plugin-back-to-top": "2.0.0-beta.64",
-    "@vuepress/theme-default": "2.0.0-beta.64",
-    "@vuepress/utils": "2.0.0-beta.64",
-    "vue": "^3.3.4",
-    "vue-router": "^4.2.3",
-    "vuepress": "2.0.0-beta.64",
-    "vuepress-plugin-blog2": "2.0.0-beta.230",
-    "vuepress-vite": "2.0.0-beta.64"
+    "vite-plus": "^0.1.21"
   },
   "packageManager": "pnpm@10.33.0"
 }

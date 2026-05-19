@@ -1,0 +1,66 @@
+/* いかすきー カラー (Splatoon 風アクセント) を Starlight のテーマ変数に流す */
+:root {
+  --sl-color-accent-low: #fef3c7;
+  --sl-color-accent: #d97706;
+  --sl-color-accent-high: #f59e0b;
+}
+
+:root[data-theme='dark'] {
+  --sl-color-accent-low: #44260a;
+  --sl-color-accent: #f59e0b;
+  --sl-color-accent-high: #fbbf24;
+}
+
+/* posts (news / maintenance) リスト */
+.post-list {
+  list-style: none;
+  padding: 0;
+  margin: 1.5rem 0;
+}
+
+.post-list li {
+  border-bottom: 1px solid var(--sl-color-gray-5);
+  padding: 0.75rem 0;
+}
+
+.post-list li:last-child {
+  border-bottom: none;
+}
+
+.post-list a {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 0.75rem;
+  text-decoration: none;
+  color: inherit;
+}
+
+.post-list a:hover .post-title {
+  text-decoration: underline;
+  color: var(--sl-color-accent);
+}
+
+.post-date {
+  color: var(--sl-color-gray-3);
+  font-size: 0.85rem;
+  white-space: nowrap;
+  font-variant-numeric: tabular-nums;
+}
+
+.post-title {
+  font-weight: 600;
+}
+
+.post-status {
+  display: inline-block;
+  padding: 0 0.4rem;
+  font-size: 0.75rem;
+  border-radius: 0.25rem;
+  background: var(--sl-color-gray-6);
+  color: var(--sl-color-white);
+}
+.post-status.tip { background: #16a34a; }
+.post-status.note { background: #2563eb; }
+.post-status.caution { background: #d97706; }
+.post-status.danger { background: #dc2626; }

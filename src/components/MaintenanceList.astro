@@ -1,0 +1,33 @@
+---
+import { getCollection } from 'astro:content';
+
+interface Props {
+  limit?: number;
+}
+const { limit = 4 } = Astro.props;
+
+const all = await getCollection('posts', (e) => e.data.category.includes('メンテナンス'));
+const items = all
+  .sort((a, b) => b.data.date.getTime() - a.data.date.getTime())
+  .slice(0, limit);
+
+const fmt = new Intl.DateTimeFormat('ja-JP', {
+  year: 'numeric',
+  month: '2-digit',
+  day: '2-digit',
+});
+---
+
+<ul class="post-list">
+  {items.map((post) => (
+    <li>
+      <a href={`/maintenance/${post.id.replace(/^maintenance\//, '').replace(/\.md$/, '')}/`}>
+        <span class="post-date">{fmt.format(post.data.date)}</span>
+        {post.data.status && (
+          <span class={`post-status ${post.data.statclass ?? 'caution'}`}>{post.data.status}</span>
+        )}
+        <span class="post-title">{post.data.title}</span>
+      </a>
+    </li>
+  ))}
+</ul>

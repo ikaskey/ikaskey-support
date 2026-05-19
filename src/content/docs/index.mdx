@@ -1,0 +1,48 @@
+---
+title: いかすきーサポート
+description: Misskey サーバー「いかすきー」のサポートサイトです。
+template: splash
+hero:
+  tagline: Misskey サーバー「いかすきー」サポートサイト
+  image:
+    file: ../../assets/ikaskey-banner.png
+  actions:
+    - text: いかすきーをはじめる
+      link: https://ikaskey.bktsk.com/
+      icon: external
+      variant: primary
+      attrs:
+        target: _blank
+    - text: いかすきーについて
+      link: /about/
+      icon: right-arrow
+      variant: minimal
+---
+
+import { Card, CardGrid } from '@astrojs/starlight/components';
+import NewsList from '../../components/NewsList.astro';
+import MaintenanceList from '../../components/MaintenanceList.astro';
+
+<CardGrid>
+  <Card title="スプラ好きのための Misskey" icon="rocket">
+    スプラトゥーンシリーズが好きな人たちの集まりです。もちろんスプラトゥーン以外のこともお話し頂けます。
+  </Card>
+  <Card title="スプラトゥーン関連の絵文字が充実！" icon="star">
+    スプラトゥーン好きだから使いたくなる！ そんなリアクションと絵文字が揃っています。
+  </Card>
+  <Card title="Fediverse なのでフォローしやすい" icon="random">
+    ActivityPub ベースの Misskey だから、Misskey 同士はもちろん、Mastodon など Fediverse のサーバー間でフォローし合うことが可能！
+  </Card>
+</CardGrid>
+
+## おしらせ
+
+<NewsList limit={4} />
+
+[→ おしらせ一覧](/news/)
+
+## メンテナンス情報
+
+<MaintenanceList limit={4} />
+
+[→ メンテナンス情報一覧](/maintenance/)
