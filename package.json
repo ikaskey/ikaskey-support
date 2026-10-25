@@ -25,13 +25,13 @@
   "homepage": "https://github.com/ikaskey/ikaskey-support#readme",
   "dependencies": {
     "@astrojs/mdx": "^5.0.6",
-    "@astrojs/sitemap": "^3.7.2",
-    "@astrojs/starlight": "^0.39.2",
-    "astro": "^6.3.5",
+    "@astrojs/sitemap": "^3.7.4",
+    "@astrojs/starlight": "^0.39.3",
+    "astro": "^6.4.8",
     "sharp": "^0.34.2"
   },
   "devDependencies": {
-    "vite-plus": "^0.1.21"
+    "vite-plus": "^0.1.24"
   },
   "packageManager": "pnpm@12.15.0"
 }

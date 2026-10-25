@@ -2,3 +2,8 @@
 allowBuilds:
   esbuild: true
   sharp: true
+
+# 脆弱性対応のための間接依存の上げ（pnpm audit, 2026-10）
+overrides:
+  # vite-plus>oxfmt が tinypool 2.1.0 を固定している（GHSA-5gmw-xhrv-c9v3 / GHSA-85c8-ppgw-ccpr、critical）
+  tinypool@^2: ^2.1.2
