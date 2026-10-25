@@ -5,5 +5,7 @@ allowBuilds:
 
 # 脆弱性対応のための間接依存の上げ（pnpm audit, 2026-10）
 overrides:
-  # vite-plus>oxfmt が tinypool 2.1.0 を固定している（GHSA-5gmw-xhrv-c9v3 / GHSA-85c8-ppgw-ccpr、critical）
-  tinypool@^2: ^2.1.2
+  # astro 6 は sharp を optionalDependencies の ^0.34.0 で持つため、直接の依存を 0.35 にしても
+  # astro の画像処理は 0.34.5 のまま残る（high 3 件）。astro 6 の sharp を 0.35 に寄せる。
+  # 0.35 で画像が作られることはビルドで確かめた。astro 7 に上げたら外す
+  sharp@^0.34: ^0.35.5
